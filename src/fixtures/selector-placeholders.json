@@ -1,0 +1,27 @@
+[
+  {
+    "page": "Challenging DOM",
+    "placeholderSelector": "REPLACE_WITH_STABLE_SELECTOR_FOR_BLUE_BUTTON",
+    "notes": "No data-testid exists on this page. Replace with a stable role/text/CSS selector after page analysis."
+  },
+  {
+    "page": "Entry Ad",
+    "placeholderSelector": "REPLACE_WITH_MODAL_CLOSE_SELECTOR",
+    "notes": "Modal timing can vary. Prefer role-based selector for the modal close action."
+  },
+  {
+    "page": "Nested Frames",
+    "placeholderSelector": "REPLACE_WITH_FRAME_LOCATOR_CHAIN",
+    "notes": "Frame trees differ by browser. Use frame locator strategy validated in headed debug mode."
+  },
+  {
+    "page": "Shadow DOM",
+    "placeholderSelector": "REPLACE_WITH_SHADOW_HOST_AND_TARGET_SELECTOR",
+    "notes": "Use shadow root locators via Playwright's selector engine."
+  },
+  {
+    "page": "WYSIWYG Editor",
+    "placeholderSelector": "REPLACE_WITH_IFRAME_BODY_SELECTOR",
+    "notes": "Selector must target TinyMCE iframe body and toolbar actions."
+  }
+]

@@ -1,0 +1,45 @@
+{
+  "name": "heroku_suite_codex",
+  "version": "1.0.0",
+  "description": "Production-ready Playwright + Cucumber + TypeScript test automation framework for the-internet.herokuapp.com",
+  "private": true,
+  "scripts": {
+    "prepare:artifacts": "rimraf artifacts && mkdir -p artifacts/screenshots artifacts/traces artifacts/console artifacts/html-snapshots artifacts/reports artifacts/html",
+    "clean": "rimraf artifacts",
+    "lint": "eslint .",
+    "typecheck": "tsc --noEmit",
+    "format": "prettier --write .",
+    "report:generate": "ts-node --transpile-only scripts/generate-report.ts",
+    "jira:sync": "ts-node --transpile-only scripts/jira-work-items.ts",
+    "test": "npm run test:regression",
+    "test:smoke": "npm run prepare:artifacts && cucumber-js --config cucumber.js --tags \"@smoke\" && npm run report:generate",
+    "test:regression": "npm run prepare:artifacts && cucumber-js --config cucumber.js --tags \"@regression and not @wip\" && npm run report:generate",
+    "test:wip": "npm run prepare:artifacts && cucumber-js --config cucumber.js --tags \"@wip\" && npm run report:generate",
+    "test:parallel": "npm run prepare:artifacts && cucumber-js --config cucumber.js --parallel 4 --tags \"@regression and not @wip\" && npm run report:generate",
+    "test:ci": "npm run prepare:artifacts && cucumber-js --config cucumber.js --parallel 4 --retry 1 --tags \"@regression and not @wip\" && npm run report:generate"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "engines": {
+    "node": ">=18"
+  },
+  "devDependencies": {
+    "@cucumber/cucumber": "^12.7.0",
+    "@playwright/test": "^1.58.2",
+    "@types/node": "^25.5.0",
+    "@typescript-eslint/eslint-plugin": "^8.57.2",
+    "@typescript-eslint/parser": "^8.57.2",
+    "dotenv": "^17.3.1",
+    "eslint": "^10.1.0",
+    "eslint-config-prettier": "^10.1.8",
+    "multiple-cucumber-html-reporter": "^3.10.0",
+    "playwright": "^1.58.2",
+    "prettier": "^3.8.1",
+    "rimraf": "^6.1.3",
+    "ts-node": "^10.9.2",
+    "typescript": "^5.9.3",
+    "zod": "^4.3.6"
+  }
+}
